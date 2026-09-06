@@ -17,10 +17,10 @@ A Data Engineer builds and maintains the systems and pipelines that make this po
 ---
 
 ## 🔹 Basic Data Engineering Flow
-<br>```mermaid
-  flowchart TD
-      A[Payment Event] --> B[Streaming Pipeline] --> C[Fraud Detection]
-
+```mermaid
+    flowchart TD
+        A[Read Everything] --> B[Process Everything] --> C[Load Everything]
+```
 This flow is the foundation of most Data Engineering systems. 
 
 ---
@@ -209,8 +209,8 @@ A pipeline normally contains multiple dependent tasks.
     flowchart TD
         A[Ingest Data] --> B[Validate Data] --> C[Transform Data] --> D[Load Final Table] --> E[Refresh Dashboard]
 
+These tasks need to run in the correct sequence.
 
-These tasks need to run in the correct sequence. 
 **Orchestration manages this workflow.**
 
 It typically handles:
