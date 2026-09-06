@@ -81,8 +81,7 @@ These are two common ways of processing data.
 ### 🔹 Streaming Processing 
 - Data processed continuously or near real-time.  
 - Suitable for: **fraud detection, live monitoring, real-time analytics, application events.**
-  Example:
-  
+  Example:<br>
   Payment Event 
     ↓ 
   Streaming Pipeline 
