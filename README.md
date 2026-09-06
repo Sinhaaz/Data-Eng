@@ -17,17 +17,17 @@ A Data Engineer builds and maintains the systems and pipelines that make this po
 ---
 
 ## 🔹 Basic Data Engineering Flow
-Data Sources
-    ↓ 
-Data Ingestion 
-    ↓ 
-Data Storage 
-    ↓ 
-Data Transformation 
-    ↓ 
-Processed / Business Data 
-    ↓ 
-Analytics / BI / ML 
+ Data Sources
+ ↓ 
+ Data Ingestion 
+ ↓ 
+ Data Storage 
+ ↓ 
+ Data Transformation 
+ ↓ 
+ Processed / Business Data 
+ ↓ 
+ Analytics / BI / ML 
 
 This flow is the foundation of most Data Engineering systems. 
 
@@ -56,11 +56,10 @@ Moving data from source systems into the data platform.
 - Can be **periodic (batch)** or **continuous (streaming)** depending on business needs.
 
 Example: 
-
 PostgreSQL 
-    ↓ 
+↓ 
 Ingestion Pipeline 
-    ↓ 
+↓ 
 Cloud Storage 
 
 The ingestion process may run periodically or continuously depending on the business 
@@ -82,11 +81,10 @@ These are two common ways of processing data.
 - Data processed continuously or near real-time.  
 - Suitable for: **fraud detection, live monitoring, real-time analytics, application events.**
   Example:<br>
-  Payment Event 
-    ↓ 
-  Streaming Pipeline 
-    ↓ 
-  Fraud Detection
+  ```mermaid
+  flowchart TD
+      A[Payment Event] --> B[Streaming Pipeline] --> C[Fraud Detection]
+
 
 **Note**
 Batch     → Process periodically 
