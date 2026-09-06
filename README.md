@@ -17,10 +17,17 @@ A Data Engineer builds and maintains the systems and pipelines that make this po
 ---
 
 ## 🔹 Basic Data Engineering Flow
+## End-to-End Pipeline
 ```mermaid
-    flowchart TD
-        A[Read Everything] --> B[Process Everything] --> C[Load Everything]
+flowchart TD
+    A[Source Systems] --> B[Data Ingestion]
+    B --> C[Data Storage]
+    C --> D[Data Transformation]
+    D --> E[Processed / Business Data]
+    E --> F[Analytics / BI / ML]
+
 ```
+
 This flow is the foundation of most Data Engineering systems. 
 
 ---
@@ -76,9 +83,9 @@ These are two common ways of processing data.
       A[Payment Event] --> B[Streaming Pipeline] --> C[Fraud Detection]
 
 
-**Note**
-Batch     → Process periodically 
-Streaming → Process continuously / near real time 
+**Note**<br>
+Batch     → Process periodically. <br>
+Streaming → Process continuously / near real time .
 
 Not every pipeline requires streaming. The business latency requirement should determine the 
 approach.
@@ -149,7 +156,7 @@ Examples:
  - BigQuery
  - Amazon Redshift
 
-**Simple Difference**
+**Simple Difference**<br>
 Data Lake 
 → Flexible storage for raw and processed data 
 Data Warehouse 
@@ -169,15 +176,15 @@ Transformations include:
 - Filtering invalid records
 - Aggregations & derived columns
 
-**Example:**<br?>
-Source: <br>
+**Example:**<br>
+**Source:* <br>
  order_id <br>
  customer_id <br>
  amount <br>
  discount <br>
  status
 
-Business may require: <br>
+**Business may require:* <br>
  final_amount = amount - discount 
 
 This transformation converts source data into information useful for downstream consumers.
@@ -205,9 +212,10 @@ A Data Engineer is responsible not only for moving data, but also for making sur
 A pipeline normally contains multiple dependent tasks. 
 
 **Example:**<br>
-    ```mermaid
-    flowchart TD
-        A[Ingest Data] --> B[Validate Data] --> C[Transform Data] --> D[Load Final Table] --> E[Refresh Dashboard]
+```mermaid
+flowchart TD
+    A[Ingest Data] --> B[Validate Data] --> C[Transform Data] --> D[Load Final Table] --> E[Refresh Dashboard]
+```
 
 These tasks need to run in the correct sequence.
 
@@ -236,7 +244,7 @@ Consider an e-commerce company.
 - Website Events 
 
 **Pipeline** 
-    ```mermaid
+```mermaid
 flowchart TD
     A[Source Systems] --> B[Data Ingestion]
     B --> C[Raw Storage / Data Lake]
@@ -245,6 +253,7 @@ flowchart TD
     E --> F[Clean / Business Data]
     F --> G[Warehouse / Lakehouse]
     G --> H[BI / Analytics / ML]
+```
 
 **Around this pipeline, we also need:** 
 - Data Quality 
@@ -279,4 +288,3 @@ Source → Ingestion → Storage → Transformation → Serving → Consumption
 - **Data Lake vs Warehouse**: Flexible data storage(Raw/processed) vs structured and optimized data for analytics/reporting.
 - **Data Quality**: Making sure data is complete, valid, consistent, and reliable. 
 - **Orchestration**: Manage pipeline scheduling, dependencies, retries and failures.
-
