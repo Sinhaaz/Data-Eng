@@ -82,6 +82,7 @@ These are two common ways of processing data.
 - Data processed continuously or near real-time.  
 - Suitable for: **fraud detection, live monitoring, real-time analytics, application events.**
   Example:
+  
   Payment Event 
     ↓ 
   Streaming Pipeline 
