@@ -17,10 +17,23 @@ A Data Engineer builds and maintains the systems and pipelines that make this po
 ---
 
 ## 🔹 Basic Data Engineering Flow
+Data Sources
+    ↓ 
+Data Ingestion 
+    ↓ 
+Data Storage 
+    ↓ 
+Data Transformation 
+    ↓ 
+Processed / Business Data 
+    ↓ 
+Analytics / BI / ML 
+
+This flow is the foundation of most Data Engineering systems. 
 
 ---
 
-## 🔹 Data Sources
+## 1- Data Sources
 Common sources include:
 - Application Databases
 - APIs
@@ -38,44 +51,129 @@ Key questions before designing a pipeline:
 
 ---
 
-## 🔹 Data Ingestion
+## 2- Data Ingestion
 Moving data from source systems into the data platform.  
 - Can be **periodic (batch)** or **continuous (streaming)** depending on business needs.
 
+Example: 
+
+PostgreSQL 
+    ↓ 
+Ingestion Pipeline 
+    ↓ 
+Cloud Storage 
+
+The ingestion process may run periodically or continuously depending on the business 
+requirement. 
+
 ---
 
-## 🔹 Batch vs Streaming
-**Batch Processing**  
+## 3- Batch vs Streaming
+These are two common ways of processing data. 
+- Batch Processing
+- Streaming Processing
+
+### 🔹 Batch Processing 
 - Data processed at scheduled intervals (hourly, daily, nightly).  
-- Suitable for: daily reports, historical processing, ETL pipelines.
+- Suitable for: **daily reports, historical processing, ETL pipelines.**
+  Example: A company processes all of yesterday's orders every morning. 
 
-**Streaming Processing**  
+### 🔹 Streaming Processing 
 - Data processed continuously or near real-time.  
-- Suitable for: fraud detection, live monitoring, real-time analytics.
+- Suitable for: **fraud detection, live monitoring, real-time analytics, application events.**
+  Example:
+  Payment Event 
+    ↓ 
+  Streaming Pipeline 
+    ↓ 
+  Fraud Detection
+
+**Note**
+Batch     → Process periodically 
+Streaming → Process continuously / near real time 
+
+Not every pipeline requires streaming. The business latency requirement should determine the 
+approach.
 
 ---
 
-## 🔹 Full Load vs Incremental Load
-- **Full Load**: Process the entire dataset (used for initial loads, small datasets, complete rebuilds).
-- **Incremental Load**: Process only new or changed records (identified via timestamps, watermarks, CDC).  
+## 4- Full Load vs Incremental Load
+Suppose a source table contains: 
+100 million records but only 50,000 records change every day. Processing all 100 million records daily may be unnecessary.
+- **Full Load**: Process the entire dataset (commonly used for initial loads, small datasets, complete rebuilds).
+    Read Everything 
+        ↓ 
+    Process Everything 
+        ↓ 
+    Load Everything
+
+- **Incremental Load**: Process only new or changed records (changes identified using timestamps, watermarks, CDC).  
   ✅ Faster, cheaper, scalable.
+    New / Updated Records 
+        ↓ 
+    Process 
+        ↓ 
+    Update Target 
+
+Why Incremental Processing? 
+1) Faster processing 
+2) Lower compute usage 
+3) Reduced cost 
+4) Better scalability 
 
 ---
 
-## 🔹 ETL vs ELT
-- **ETL (Extract → Transform → Load)**: Transform before loading.  
-- **ELT (Extract → Load → Transform)**: Load raw data first, then transform inside the target platform.  
-Modern cloud warehouses often prefer **ELT**.
+## 5- ETL vs ELT
+### 🔹 ETL (Extract → Transform → Load): 
+Transform before loading into the final target system.  
+
+### 🔹 ELT (Extract → Load → Transform): 
+Load raw data first, then transform inside the target platform.  
+
+Modern cloud warehouses often prefer **ELT**  because they provide scalable compute for transformations.
 
 ---
 
-## 🔹 Data Lake vs Data Warehouse
-- **Data Lake**: Flexible storage for raw/processed data (CSV, JSON, Parquet, Logs). Examples: S3, ADLS, GCS.  
-- **Data Warehouse**: Structured, optimized for analytics/reporting. Examples: Snowflake, BigQuery, Redshift.
+## 6- Data Lake vs Data Warehouse
+### 🔹 Data Lake: 
+Data Lake provides scalable storage for large amounts of raw and processed data. 
+
+It can contain formats such as: 
+- CSV 
+- JSON 
+- Parquet 
+- Logs 
+
+Examples of commonly used storage: 
+● Amazon S3 
+● Azure Data Lake Storage 
+● Google Cloud Storage
+
+### 🔹 Data Warehouse:
+Data Warehouse is designed primarily for structured analytical data and reporting.
+
+Use Cases:
+ ● BI dashboards
+ ● Business reports
+ ● Analytical queries
+ ● Aggregations
+
+Examples: 
+ - Snowflake
+ - BigQuery
+ - Amazon Redshift
+
+**Simple Difference**
+Data Lake 
+→ Flexible storage for raw and processed data 
+Data Warehouse 
+→ Structured data optimized for analytics 
 
 ---
 
-## 🔹 Data Transformation
+## 7- Data Transformation
+Raw source data is rarely ready for business use. So, Data Engineer performs transformations.
+
 Transformations include:
 - Removing duplicates
 - Handling nulls
@@ -85,9 +183,23 @@ Transformations include:
 - Filtering invalid records
 - Aggregations & derived columns
 
+**Example:**
+Source: 
+ order_id 
+ customer_id 
+ amount 
+ discount 
+ status 
+Business may require: 
+ final_amount = amount - discount 
+This transformation converts source data into information useful for downstream consumers.
+
 ---
 
-## 🔹 Data Quality
+## 8- Data Quality
+A successful pipeline does not automatically mean the data is correct. 
+Data quality checks ensure that the data reaching downstream systems is reliable. 
+
 Checks ensure reliability:
 - Null checks
 - Duplicate detection
@@ -95,24 +207,74 @@ Checks ensure reliability:
 - File arrival validation
 - Source vs target count validation
 
-Poor data quality → incorrect dashboards & decisions.
+**Poor data quality → incorrect dashboards & decisions.**
+A Data Engineer is responsible not only for moving data, but also for making sure it is reliable. 
 
 ---
 
-## 🔹 Data Orchestration
-Manages pipeline workflows:
+## 9- Data Orchestration
+A pipeline normally contains multiple dependent tasks. 
+
+**Example:** 
+ Ingest Data 
+    ↓ 
+ Validate Data 
+    ↓ 
+ Transform Data 
+    ↓ 
+ Load Final Tables 
+    ↓ 
+ Refresh Dashboard 
+
+These tasks need to run in the correct sequence. 
+**Orchestration manages this workflow.**
+
+It typically handles:
 - Scheduling
 - Dependencies
 - Retries
 - Failure handling
 - Monitoring
 
-**Tools**: Apache Airflow, Azure Data Factory, Databricks Workflows.
+**Tools**: 
+- Apache Airflow
+- Azure Data Factory
+- Databricks Workflows
 
 ---
 
 ## 🔹 End-to-End Pipeline Example (E-commerce)
-Includes: Data Quality, Orchestration, Monitoring, Security.
+Consider an e-commerce company. 
+**Sources** 
+- Orders Database 
+- Customer Database 
+- Product API 
+- Website Events 
+
+**Pipeline** 
+ Source Systems 
+    ↓ 
+ Data Ingestion 
+    ↓ 
+ Raw Storage / Data Lake 
+    ↓ 
+ Data Validation 
+    ↓ 
+ Data Transformation 
+    ↓ 
+ Clean / Business Data 
+    ↓ 
+ Warehouse / Lakehouse 
+    ↓ 
+ BI / Analytics / ML 
+
+**Around this pipeline, we also need:** 
+- Data Quality 
+- Orchestration 
+- Monitoring 
+- Security 
+
+This represents the basic architecture of a production Data Engineering system. 
 
 ---
 
@@ -131,11 +293,12 @@ Includes: Data Quality, Orchestration, Monitoring, Security.
 ---
 
 ## 🔹 Quick Revision
-- **Data Flow**: Source → Ingestion → Storage → Transformation → Serving → Consumption  
+- **Data Flow**: 
+Source → Ingestion → Storage → Transformation → Serving → Consumption  
 - **Batch vs Streaming**: Periodic vs continuous processing  
 - **Full vs Incremental**: All data vs only changed data  
-- **ETL vs ELT**: Transform before vs after loading  
-- **Data Lake vs Warehouse**: Flexible storage vs structured analytics  
-- **Data Quality**: Ensure reliability  
-- **Orchestration**: Manage scheduling, dependencies, retries, failures  
+- **ETL vs ELT**: Transform before loading vs Transform after loading
+- **Data Lake vs Warehouse**: Flexible data storage(Raw/processed) vs structured and optimized data for analytics/reporting.
+- **Data Quality**: Making sure data is complete, valid, consistent, and reliable. 
+- **Orchestration**: Manage pipeline scheduling, dependencies, retries and failures.
 
