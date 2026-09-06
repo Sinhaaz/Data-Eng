@@ -17,14 +17,9 @@ A Data Engineer builds and maintains the systems and pipelines that make this po
 ---
 
 ## 🔹 Basic Data Engineering Flow
-<br>
-```mermaid
-flowchart TD
-    A[Data Sources] --> B[Data Ingestion]
-    B --> C[Data Storage]
-    C --> D[Data Transformation]
-    D --> E[Processed / Business Data]
-    E --> F[Analytics / BI / ML]
+<br>```mermaid
+  flowchart TD
+      A[Payment Event] --> B[Streaming Pipeline] --> C[Fraud Detection]
 
 This flow is the foundation of most Data Engineering systems. 
 
@@ -70,7 +65,7 @@ These are two common ways of processing data.
 ### 🔹 Batch Processing 
 - Data processed at scheduled intervals (hourly, daily, nightly).  
 - Suitable for: **daily reports, historical processing, ETL pipelines.**
-  Example: A company processes all of yesterday's orders every morning. 
+  <br>Example: A company processes all of yesterday's orders every morning. 
 
 ### 🔹 Streaming Processing 
 - Data processed continuously or near real-time.  
@@ -136,18 +131,18 @@ It can contain formats such as:
 - Logs 
 
 Examples of commonly used storage: 
-● Amazon S3 
-● Azure Data Lake Storage 
-● Google Cloud Storage
+- Amazon S3 
+- Azure Data Lake Storage 
+- Google Cloud Storage
 
 ### 🔹 Data Warehouse:
 Data Warehouse is designed primarily for structured analytical data and reporting.
 
 Use Cases:
- ● BI dashboards
- ● Business reports
- ● Analytical queries
- ● Aggregations
+ - BI dashboards
+ - Business reports
+ - Analytical queries
+ - Aggregations
 
 Examples: 
  - Snowflake
@@ -174,15 +169,15 @@ Transformations include:
 - Filtering invalid records
 - Aggregations & derived columns
 
-**Example:**
-Source: 
- order_id 
- customer_id 
- amount 
- discount 
- status 
+**Example:**<br?>
+Source: <br>
+ order_id <br>
+ customer_id <br>
+ amount <br>
+ discount <br>
+ status
 
-Business may require: 
+Business may require: <br>
  final_amount = amount - discount 
 
 This transformation converts source data into information useful for downstream consumers.
@@ -201,6 +196,7 @@ Checks ensure reliability:
 - Source vs target count validation
 
 **Poor data quality → incorrect dashboards & decisions.**
+
 A Data Engineer is responsible not only for moving data, but also for making sure it is reliable. 
 
 ---
