@@ -17,17 +17,14 @@ A Data Engineer builds and maintains the systems and pipelines that make this po
 ---
 
 ## 🔹 Basic Data Engineering Flow
- Data Sources
- ↓ 
- Data Ingestion 
- ↓ 
- Data Storage 
- ↓ 
- Data Transformation 
- ↓ 
- Processed / Business Data 
- ↓ 
- Analytics / BI / ML 
+<br>
+```mermaid
+flowchart TD
+    A[Data Sources] --> B[Data Ingestion]
+    B --> C[Data Storage]
+    C --> D[Data Transformation]
+    D --> E[Processed / Business Data]
+    E --> F[Analytics / BI / ML]
 
 This flow is the foundation of most Data Engineering systems. 
 
@@ -53,14 +50,12 @@ Key questions before designing a pipeline:
 
 ## 2- Data Ingestion
 Moving data from source systems into the data platform.  
-- Can be **periodic (batch)** or **continuous (streaming)** depending on business needs.
 
-Example: 
-PostgreSQL 
-↓ 
-Ingestion Pipeline 
-↓ 
-Cloud Storage 
+- Can be **periodic (batch)** or **continuous (streaming)** depending on business needs.
+  Example:<br>
+  ```mermaid
+    flowchart TD
+        A[PostgreSQL] --> B[Ingestion Pipeline] --> C[Cloud Storage]
 
 The ingestion process may run periodically or continuously depending on the business 
 requirement. 
@@ -98,20 +93,18 @@ approach.
 ## 4- Full Load vs Incremental Load
 Suppose a source table contains: 
 100 million records but only 50,000 records change every day. Processing all 100 million records daily may be unnecessary.
-- **Full Load**: Process the entire dataset (commonly used for initial loads, small datasets, complete rebuilds).
-    Read Everything 
-        ↓ 
-    Process Everything 
-        ↓ 
-    Load Everything
+- **Full Load**: Process the entire dataset (commonly used for initial loads, small datasets, complete rebuilds).<br>
+    ```mermaid
+    flowchart TD
+        A[Read Everything] --> B[Process Everything] --> C[Load Everything]
+
 
 - **Incremental Load**: Process only new or changed records (changes identified using timestamps, watermarks, CDC).  
   ✅ Faster, cheaper, scalable.
-    New / Updated Records 
-        ↓ 
-    Process 
-        ↓ 
-    Update Target 
+    ```mermaid
+    flowchart TD
+        A[New / Updated Records] --> B[Process] --> C[Update Target]
+
 
 Why Incremental Processing? 
 1) Faster processing 
@@ -188,8 +181,10 @@ Source:
  amount 
  discount 
  status 
+
 Business may require: 
  final_amount = amount - discount 
+
 This transformation converts source data into information useful for downstream consumers.
 
 ---
@@ -213,16 +208,11 @@ A Data Engineer is responsible not only for moving data, but also for making sur
 ## 9- Data Orchestration
 A pipeline normally contains multiple dependent tasks. 
 
-**Example:** 
- Ingest Data 
-    ↓ 
- Validate Data 
-    ↓ 
- Transform Data 
-    ↓ 
- Load Final Tables 
-    ↓ 
- Refresh Dashboard 
+**Example:**<br>
+    ```mermaid
+    flowchart TD
+        A[Ingest Data] --> B[Validate Data] --> C[Transform Data] --> D[Load Final Table] --> E[Refresh Dashboard]
+
 
 These tasks need to run in the correct sequence. 
 **Orchestration manages this workflow.**
@@ -250,21 +240,15 @@ Consider an e-commerce company.
 - Website Events 
 
 **Pipeline** 
- Source Systems 
-    ↓ 
- Data Ingestion 
-    ↓ 
- Raw Storage / Data Lake 
-    ↓ 
- Data Validation 
-    ↓ 
- Data Transformation 
-    ↓ 
- Clean / Business Data 
-    ↓ 
- Warehouse / Lakehouse 
-    ↓ 
- BI / Analytics / ML 
+    ```mermaid
+flowchart TD
+    A[Source Systems] --> B[Data Ingestion]
+    B --> C[Raw Storage / Data Lake]
+    C --> D[Data Validation]
+    D --> E[Data Transformation]
+    E --> F[Clean / Business Data]
+    F --> G[Warehouse / Lakehouse]
+    G --> H[BI / Analytics / ML]
 
 **Around this pipeline, we also need:** 
 - Data Quality 
