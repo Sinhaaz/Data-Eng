@@ -292,14 +292,13 @@ Source → Ingestion → Storage → Transformation → Serving → Consumption
 
 ## 🔹 Certificates
 You can also check out my certificates here:  
-[![PDF Preview](images/pdf-thumbnail.png)](docs/project-overview.pdf)
-Spark4: [Project Overview (PDF)](docs/project-overview.pdf)
+- Spark4: [Project Overview (PDF)](docs/project-overview.pdf)
 
 ---
 
 ## 🔹 Projects
 You can also check out my projects here:  
 - [Cricket Big Data Project](https://github.com/Sinhaaz/cricket-big-data-project)
-  *In this project we will be using cricket api and getting final insights. Using Medallion Architecture*
+  <br>*In this project we will be using cricket api and getting final insights. Using Medallion Architecture*
 
 
