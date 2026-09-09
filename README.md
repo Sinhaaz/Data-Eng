@@ -266,7 +266,7 @@ This represents the basic architecture of a production Data Engineering system.
 
 ## 🔹 Common Tools & Their Purpose
 | Technology            | Purpose                          |
-|------------------------|----------------------------------|
+|-----------------------|----------------------------------|
 | SQL                   | Querying & transforming data     |
 | Python                | Automation, APIs, data processing|
 | Apache Spark          | Distributed data processing      |
@@ -299,4 +299,4 @@ Source → Ingestion → Storage → Transformation → Serving → Consumption
 You can also check out my projects here:  
 - [Cricket Big Data Project](https://github.com/Sinhaaz/cricket-big-data-project)
 
-[![Cricket Big Data Project](https://img.shields.io/badge/GitHub-Repo-blue?logo=github)](https://github.com/Sinhaaz/cricket-big-data-project)
+
