@@ -77,7 +77,7 @@ These are two common ways of processing data.
 ### 🔹 Streaming Processing 
 - Data processed continuously or near real-time.  
 - Suitable for: **fraud detection, live monitoring, real-time analytics, application events.**
-  Example:<br>
+  <br>Example:
   ```mermaid
   flowchart TD
       A[Payment Event] --> B[Streaming Pipeline] --> C[Fraud Detection]
@@ -93,8 +93,7 @@ approach.
 ---
 
 ## 4- Full Load vs Incremental Load
-Suppose a source table contains: 
-100 million records but only 50,000 records change every day. Processing all 100 million records daily may be unnecessary.
+Suppose a source table contains 100 million records but only 50,000 records change every day. Processing all 100 million records daily may be unnecessary.
 - **Full Load**: Process the entire dataset (commonly used for initial loads, small datasets, complete rebuilds).<br>
     ```mermaid
     flowchart TD
@@ -177,14 +176,14 @@ Transformations include:
 - Aggregations & derived columns
 
 **Example:**<br>
-**Source:* <br>
+*Source:* <br>
  order_id <br>
  customer_id <br>
  amount <br>
  discount <br>
  status
 
-**Business may require:* <br>
+*Business may require:* <br>
  final_amount = amount - discount 
 
 This transformation converts source data into information useful for downstream consumers.
@@ -288,3 +287,16 @@ Source → Ingestion → Storage → Transformation → Serving → Consumption
 - **Data Lake vs Warehouse**: Flexible data storage(Raw/processed) vs structured and optimized data for analytics/reporting.
 - **Data Quality**: Making sure data is complete, valid, consistent, and reliable. 
 - **Orchestration**: Manage pipeline scheduling, dependencies, retries and failures.
+
+---
+
+## 🔹 Certificates
+
+
+---
+
+## 🔹 Projects
+You can also check out my projects here:  
+- [Cricket Big Data Project](https://github.com/Sinhaaz/cricket-big-data-project)
+
+[![Cricket Big Data Project](https://img.shields.io/badge/GitHub-Repo-blue?logo=github)](https://github.com/Sinhaaz/cricket-big-data-project)
