@@ -292,7 +292,7 @@ Source → Ingestion → Storage → Transformation → Serving → Consumption
 
 ## 🔹 Certificates
 You can also check out my certificates here:  
-- Spark4: [Taming Big Data with Apache Spark 4 and Python](Taming Big Data with Apache Spark 4 and Python.pdf)
+- Spark4: [Taming Big Data with Apache Spark 4 and Python](https://github.com/Sinhaaz/Data-Eng/blob/main/Taming%20Big%20Data%20with%20Apache%20Spark%204%20and%20Python.pdf)
 
 ---
 
